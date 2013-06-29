@@ -5078,6 +5078,32 @@ wysihtml5.dom.parse = (function() {
         attributeValue = (attributeValue || "").replace(REG_EXP, "");
         return attributeValue || null;
       };
+    })(),
+
+    absolute_path: (function() {
+      var REG_EXP = /^\/.*/i;
+      return function(attributeValue) {
+        if (!attributeValue || !attributeValue.match(REG_EXP)) {
+          return null;
+        }
+        return attributeValue.replace(REG_EXP, function(match) {
+          return match.toLowerCase();
+        });
+      };
+    })(),
+
+    href: (function() {
+      console.log('testing href');
+      var HTTP_REG_EXP = /^(https?:\/\/|mailto:)/i,
+          PATH_REG_EXP = /^\/.*/i;
+      return function(attributeValue) {
+        if (!attributeValue || (!attributeValue.match(HTTP_REG_EXP) && !attributeValue.match(PATH_REG_EXP))) {
+          return null;
+        }
+        return attributeValue.replace(HTTP_REG_EXP, function(match) {
+          return match.toLowerCase();
+        });
+      };
     })()
   };
   
