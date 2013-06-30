@@ -5104,6 +5104,20 @@ wysihtml5.dom.parse = (function() {
           return match.toLowerCase();
         });
       };
+    })(),
+
+    target: (function() {
+      var REG_EXP = /(_self|_blank)/i;
+
+      return function(attributeValue) {
+        if (!attributeValue || !attributeValue.match(REG_EXP)) {
+          return null;
+        }
+        return attributeValue.replace(REG_EXP, function(match) {
+            console.log('  return match: '+match.toLowerCase());
+          return match.toLowerCase();
+        });
+      };
     })()
   };
   
