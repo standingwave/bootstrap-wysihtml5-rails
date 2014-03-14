@@ -5093,7 +5093,6 @@ wysihtml5.dom.parse = (function() {
     })(),
 
     href: (function() {
-      console.log('testing href');
       var HTTP_REG_EXP = /^(https?:\/\/|mailto:)/i,
           PATH_REG_EXP = /^\/.*/i;
       return function(attributeValue) {
@@ -5114,7 +5113,6 @@ wysihtml5.dom.parse = (function() {
           return null;
         }
         return attributeValue.replace(REG_EXP, function(match) {
-            console.log('  return match: '+match.toLowerCase());
           return match.toLowerCase();
         });
       };
